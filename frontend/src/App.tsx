@@ -49,7 +49,7 @@ export function App() {
     orderValue: records.orders.reduce((sum, item) => sum + Number(item.totalAmount || 0), 0),
   }), [records]);
 
-  useEffect(() => 
+  useEffect(() => {
     getCurrentUser().then(setUser).catch((reason) => setError(String(reason)));
   }, []);
 
