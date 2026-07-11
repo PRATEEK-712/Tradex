@@ -53,7 +53,7 @@ export function App() {
     getCurrentUser().then(setUser).catch((reason) => setError(String(reason)));
   }, []);
 
-  async function refresh() {
+  async function refresh() 
     setLoading(true);
     setError(null);
     try {
@@ -180,6 +180,7 @@ function DataTable({ rows }: { rows: RecordItem[] }) {
     </div>
   );
 }
+
 
 function labelize(value: string) {
   return value.replace(/([A-Z])/g, ' $1').replace(/^./, (char) => char.toUpperCase());
