@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: tradeops-api
+  config:
+    import: optional:dotenv
+
+  datasource:
+    url: jdbc:h2:mem:tradeops;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OIDC_ISSUER_URI:https://accounts.google.com}
+          audiences: ${OIDC_AUDIENCE:tradeops-api}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  security:
+    google:
+      allowed-domain: ${GOOGLE_ALLOWED_DOMAIN:}
+      admin-emails: ${GOOGLE_ADMIN_EMAILS:}
