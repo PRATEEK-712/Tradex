@@ -53,7 +53,7 @@ export function App() {
     getCurrentUser().then(setUser).catch((reason) => setError(String(reason)));
   }, []);
 
-  async function refresh() 
+  async function refresh() {
     setLoading(true);
     setError(null);
     try {
